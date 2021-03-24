@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MyInventory.Models.Suppliers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="records" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representative)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var supplier in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.Representative)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.DateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelSuppliers => supplier.Type)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@supplier.SupplierId">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@supplier.SupplierId"
+                   onclick='return confirm("Are you sure?");'>
+                    <i class="fa fa-remove"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#records').DataTable();
+        });
+    </script>
+}
